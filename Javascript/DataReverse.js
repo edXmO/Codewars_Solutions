@@ -16,7 +16,6 @@
 function dataReverse(data) {
     let byteLength = 8;
     let bytes = [];
-    let initialIdx = 0;
     for (let i = data.length; i > 0; i -= 8) {
         bytes.push(data.splice(data.length - byteLength, data.length));
     }
