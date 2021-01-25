@@ -51,3 +51,18 @@ function revrot(str, sz) {
 // revrot("123456987654", 6);  //"234561
 //         "987654"           876549"
 
+
+// Another solution, in better time complexity
+// By cave.on (functional style)
+function revrot(str, sz) {
+    if (sz < 1 || sz > str.length)
+        return '';
+
+    let reversedChunk = str => str.split('').reverse().join('');
+    let rotatedChunk = str => str.slice(1) + str.slice(0, 1);
+    let cubes = cubed => cubed.split('').reduce((acc, curr) => acc + Math.pow(curr, 3), 0);
+
+    return str.match(new RegExp('.{' + sz + '}', 'g'))
+        .map(chunk => cubes(chunk) % 2 ? rotatedChunk(chunk) : reversedChunk(chunk))
+        .join('');
+}
